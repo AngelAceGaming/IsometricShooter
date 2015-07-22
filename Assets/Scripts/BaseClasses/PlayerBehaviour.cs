@@ -4,15 +4,20 @@ using System.Collections;
 public class PlayerBehaviour : CharacterBehaviour 
 {
 	// The vectors for movement and rotation
-	public Vector3 mov;
+	Vector3 mov;
 	Vector3 rot;
 
 	// The character controller for movement
 	CharacterController c;
 
 	// Sets the character controller up
-	void Start()
+	protected void Start()
 	{
+		if (Camera.main.GetComponent<CameraController>())
+			Camera.main.GetComponent<CameraController>().target = this.transform;
+		else
+			Debug.Log ("Main camera in this scene needs a CameraController attached");
+
 		if (!GetComponent<CharacterController>())
 		{
 			Debug.Log ("CharacterController on " + name + "was not found.\nA temporary one has been added");
@@ -100,6 +105,8 @@ public class PlayerBehaviour : CharacterBehaviour
 	// Does attack behaviour
 	protected override void Attack()
 	{
+		Debug.Log ("ATTACK!");
+
 		// A raycasthit to check if we hit anything
 		RaycastHit hit;
 
