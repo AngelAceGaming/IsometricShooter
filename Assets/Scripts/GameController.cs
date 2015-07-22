@@ -2,8 +2,7 @@
 
 public static class GameController
 {
-	public const float gravity = 5f;
-	public const float jumpForce = 20f;
+	public const float gravity = 10f;
 
 	public static KeyCode jump = KeyCode.Space;
 	public static KeyCode attack = KeyCode.Mouse0;

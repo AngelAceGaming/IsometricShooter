@@ -3,7 +3,10 @@
 public abstract class CharacterBehaviour : MonoBehaviour 
 {
 	// The variables for our HP, max HP, damage and speed
-	public float hp, maxHp, damage, speed;
+	public float hp, maxHp, damage, speed, jumpForce;
+
+	// The object you shoot from
+	public Transform shootFrom;
 
 	// Just says we'll add these functions in later classes
 	protected abstract void Movement();
