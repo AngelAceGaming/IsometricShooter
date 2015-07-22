@@ -23,6 +23,7 @@ public abstract class CharacterBehaviour : MonoBehaviour
 	// Removes HP then checks if character is dead
 	public void LoseHP(float amount)
 	{
+		Debug.Log (amount);
 		hp = Mathf.Clamp (hp - amount, 0f, maxHp);
 		
 		if (hp <= 0f)

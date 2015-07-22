@@ -18,6 +18,9 @@ public class EnemyBehaviour : CharacterBehaviour
 	// How much time has passed since we last attacked
 	float timeSinceAttack;
 
+	// The current object being chased
+	Transform target;
+
 	// Sets up the navmeshagent
 	void Start()
 	{
@@ -48,7 +51,33 @@ public class EnemyBehaviour : CharacterBehaviour
 	// Sets a new path to move
 	protected override void Movement()
 	{
-		GetNewPos();
+		if (target != transform && GameController.GetCount<PlayerBehaviour>() > 0)
+		{
+			PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
+
+			for (int i = 0; i < players.Length; i++)
+			{
+				if (Physics.Linecast (transform.position, players[i].transform.position))
+				{
+					target = players[i].transform;
+					break;
+				}
+				else
+					target = this.transform;
+			}
+
+			nav.SetDestination(target.position);
+		}
+
+		if (!Physics.Linecast (transform.position, target.position) &&
+		    nav.pathStatus == NavMeshPathStatus.PathComplete)
+		{
+			target = this.transform;
+			GetNewPos ();
+		}
+
+		if (target = this.transform)
+			GetNewPos();
 	}
 
 	// Just looks forward

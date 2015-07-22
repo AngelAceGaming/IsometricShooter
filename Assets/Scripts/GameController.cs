@@ -7,7 +7,7 @@ public static class GameController
 	public static KeyCode jump = KeyCode.Space;
 	public static KeyCode attack = KeyCode.Mouse0;
 
-	public static int Enemycount<T>()
+	public static int GetCount<T>()
 		where T : Object
 	{
 		return GameObject.FindObjectsOfType<T>().Length;
