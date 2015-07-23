@@ -21,4 +21,16 @@ public static class GameController
 
 		return pos;
 	}
+	
+	/* Works out the angle from the game object to the mouse cursor
+	 * You might need to change this if you're coming in from a different angle
+	 */
+	public static float AngleBetweenPositions(Vector3 a, Vector3 b)
+	{
+		/* Gets the arc tangent of the object position and mouse position
+		 * Converts it to radians
+		 * Takes 45 degrees off the result so it faces the mouse
+		 */
+		return -Mathf.Atan2 (a.y - b.y, a.x - b.x) * Mathf.Rad2Deg - 45f;
+	}
 }
